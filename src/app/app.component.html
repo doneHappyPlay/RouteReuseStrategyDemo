@@ -1,1 +1,34 @@
-<router-outlet></router-outlet>
+<nz-layout class="layout">
+  <nz-header>
+    <div class="logo"></div>
+    <ul nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'" style="line-height: 64px;">
+      <li nz-menu-item>
+        <a routerLink="/login">login</a>
+      </li>
+      <li nz-menu-item><a routerLink="/register">register</a></li>
+      <li nz-menu-item><a routerLink="/search">search</a></li>
+    </ul>
+  </nz-header>
+  <nz-content style="padding:0 50px;">
+    <!--<nz-breadcrumb style="margin:16px 0;">-->
+    <!--<nz-breadcrumb-item>Home</nz-breadcrumb-item>-->
+    <!--<nz-breadcrumb-item>List</nz-breadcrumb-item>-->
+    <!--<nz-breadcrumb-item>App</nz-breadcrumb-item>-->
+    <!--</nz-breadcrumb>-->
+    <div style="background:#fff; padding: 24px;">
+      <router-outlet></router-outlet>
+    </div>
+  </nz-content>
+  <nz-footer style="text-align: center;">Ant Design ©2017 Implement By Angular</nz-footer>
+</nz-layout>
+<div class="quick-link">
+  <h1>QUICK LINK</h1>
+  <ul>
+    <li class="links" *ngFor="let item of storesLinks">
+      <span>{{item}}</span>
+    </li>
+    <button (click)="testClick()">
+      点击
+    </button>
+  </ul>
+</div>

@@ -5,7 +5,7 @@ import {map} from 'rxjs/operators';
 @Component({
   selector: 'app-search',
   template: `
-    <div style="height: 3000px;">
+    <div>
       <p><strong>Search List</strong></p>
       <input type="text" [(ngModel)]="q" placeholder="email, keywords: ab">
       <button (click)="search()">Search</button>
@@ -27,11 +27,6 @@ import {map} from 'rxjs/operators';
         </tr>
         </tbody>
       </table>
-      <!--<app-nz-affix>-->
-        <!--<button>-->
-          <!--<span>Affix top</span>-->
-        <!--</button>-->
-      <!--</app-nz-affix>-->
     </div>
   `,
 })
