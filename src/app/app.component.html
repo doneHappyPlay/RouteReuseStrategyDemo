@@ -25,10 +25,8 @@
   <h1>QUICK LINK</h1>
   <ul>
     <li class="links" *ngFor="let item of storesLinks">
-      <span>{{item}}</span>
+      <span class="path-name">{{item}}</span>
+      <span class="close-ico" (click)="closePath(item)">x</span>
     </li>
-    <button (click)="testClick()">
-      点击
-    </button>
   </ul>
 </div>

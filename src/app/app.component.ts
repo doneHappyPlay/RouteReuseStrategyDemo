@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {InteractiveService} from './interactive.service';
 
 @Component({
@@ -6,18 +6,23 @@ import {InteractiveService} from './interactive.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   storesLinks = [];
 
   constructor(private interactiveService: InteractiveService) {
   }
 
-  oncloseMe() {
-    console.log('closeMe');
+  ngOnInit() {
+    this.interactiveService.storeEvent.subscribe((path) => {
+      console.log(path);
+      if (this.storesLinks.indexOf(path) === -1) {
+        this.storesLinks.push(path);
+      }
+    });
   }
 
-  testClick() {
-    console.log('hahaahh');
-    this.interactiveService.deleteEvent.emit('hahaahh');
+  closePath(path) {
+    this.interactiveService.deleteEvent.emit(path);
   }
+
 }

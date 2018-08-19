@@ -6,6 +6,7 @@ import {EventEmitter, Injectable} from '@angular/core';
 export class InteractiveService {
 
   deleteEvent = new EventEmitter<any>();
+  storeEvent = new EventEmitter<any>();
 
   constructor() {
   }

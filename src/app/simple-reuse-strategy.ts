@@ -4,21 +4,22 @@
 // tslint:disable
 import {RouteReuseStrategy, DefaultUrlSerializer, ActivatedRouteSnapshot, DetachedRouteHandle} from '@angular/router';
 import {InteractiveService} from "./interactive.service";
+import {Inject} from "@angular/core";
 
 export class SimpleReuseStrategy implements RouteReuseStrategy {
-  interactive = new InteractiveService();
-
+  storeService;
   public static handles: { [key: string]: DetachedRouteHandle } = {};
-  constructor() {
-    console.log(this.interactive);
+
+  constructor(@Inject(InteractiveService) interactive: InteractiveService) {
+    this.storeService = interactive;
     console.log('进入构造函数');
-    this.interactive.deleteEvent.subscribe((e) => {
-      console.log(e);
+    interactive.deleteEvent.subscribe((e) => {
+      this.deleteRouteSnapshot(e);
     })
   }
 
   //  删除路由快照的方法
-  public static deleteRouteSnapshot(path: string): void {
+  public  deleteRouteSnapshot(path: string): void {
     const name = path.replace(/\//g, '_');
     if (SimpleReuseStrategy.handles[name]) {
       delete SimpleReuseStrategy.handles[name];
@@ -39,6 +40,7 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
     console.log('当用户离开时会触发，存储路由');
     // 按path作为key存储路由快照&组件当前实例对象
     SimpleReuseStrategy.handles[this.getRouteUrl(route)] = handle;
+    this.storeService.storeEvent.emit(this.getRouteUrl(route));
   }
 
   //  是否允许还原路由

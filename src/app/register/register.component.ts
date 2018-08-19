@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   Validators
 } from '@angular/forms';
+import {InteractiveService} from '../interactive.service';
 
 @Component({
   selector: 'app-register',
@@ -17,8 +18,8 @@ export class RegisterComponent implements OnInit {
 
   submitForm(): void {
     for (const i in this.validateForm.controls) {
-      this.validateForm.controls[ i ].markAsDirty();
-      this.validateForm.controls[ i ].updateValueAndValidity();
+      this.validateForm.controls[i].markAsDirty();
+      this.validateForm.controls[i].updateValueAndValidity();
     }
   }
 
@@ -29,9 +30,9 @@ export class RegisterComponent implements OnInit {
 
   confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
-      return { required: true };
+      return {required: true};
     } else if (control.value !== this.validateForm.controls.password.value) {
-      return { confirm: true, error: true };
+      return {confirm: true, error: true};
     }
   }
 
@@ -39,20 +40,23 @@ export class RegisterComponent implements OnInit {
     e.preventDefault();
   }
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private interactive: InteractiveService) {
   }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      email            : [ null, [ Validators.email ] ],
-      password         : [ null, [ Validators.required ] ],
-      checkPassword    : [ null, [ Validators.required, this.confirmationValidator ] ],
-      nickname         : [ null, [ Validators.required ] ],
-      phoneNumberPrefix: [ '+86' ],
-      phoneNumber      : [ null, [ Validators.required ] ],
-      website          : [ null, [ Validators.required ] ],
-      captcha          : [ null, [ Validators.required ] ],
-      agree            : [ false ]
+      email: [null, [Validators.email]],
+      password: [null, [Validators.required]],
+      checkPassword: [null, [Validators.required, this.confirmationValidator]],
+      nickname: [null, [Validators.required]],
+      phoneNumberPrefix: ['+86'],
+      phoneNumber: [null, [Validators.required]],
+      website: [null, [Validators.required]],
+      captcha: [null, [Validators.required]],
+      agree: [false]
+    });
+    this.interactive.deleteEvent.subscribe((e) => {
+      console.log(e);
     });
   }
 }

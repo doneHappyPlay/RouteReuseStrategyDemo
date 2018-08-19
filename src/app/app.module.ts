@@ -8,11 +8,12 @@ import {RouteReuseStrategy, RouterModule} from '@angular/router';
 import {SearchComponent} from './search.component';
 import {EditComponent} from './edit.component';
 import {SimpleReuseStrategy} from './simple-reuse-strategy';
-import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
-import { registerLocaleData } from '@angular/common';
+import {NgZorroAntdModule, NZ_I18N, zh_CN} from 'ng-zorro-antd';
+import {registerLocaleData} from '@angular/common';
 import zh from '@angular/common/locales/zh';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
+import {InteractiveService} from './interactive.service';
 
 registerLocaleData(zh);
 
@@ -42,7 +43,7 @@ registerLocaleData(zh);
   ],
   providers: [
     {provide: RouteReuseStrategy, useClass: SimpleReuseStrategy},
-    { provide: NZ_I18N, useValue: zh_CN }
+    {provide: NZ_I18N, useValue: zh_CN}
   ],
   bootstrap: [AppComponent]
 })

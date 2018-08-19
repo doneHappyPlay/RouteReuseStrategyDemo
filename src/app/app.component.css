@@ -11,10 +11,28 @@
   right: 0;
   top: 0;
   color: white;
+  overflow: hidden;
+  padding: 0 20px;
 }
 
 .quick-link > h1 {
   width: 100%;
   text-align: center;
   color: white;
+}
+
+.links {
+  width: 100%;
+  overflow: hidden;
+  height: 30px;
+  line-height: 30px;
+}
+
+.close-ico {
+  float: right;
+  cursor: pointer;
+}
+
+.path-name {
+  float: left;
 }
