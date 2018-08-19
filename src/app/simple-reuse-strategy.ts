@@ -12,7 +12,6 @@ export class SimpleReuseStrategy implements RouteReuseStrategy {
 
   constructor(@Inject(InteractiveService) interactive: InteractiveService) {
     this.storeService = interactive;
-    console.log('进入构造函数');
     interactive.deleteEvent.subscribe((e) => {
       this.deleteRouteSnapshot(e);
     })

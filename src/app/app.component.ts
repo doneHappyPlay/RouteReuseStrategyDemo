@@ -23,6 +23,10 @@ export class AppComponent implements OnInit {
 
   closePath(path) {
     this.interactiveService.deleteEvent.emit(path);
+    const index = this.storesLinks.indexOf(path);
+    if (index > -1) {
+      this.storesLinks.splice(index, 1);
+    }
   }
 
 }

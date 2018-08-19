@@ -14,6 +14,7 @@ import zh from '@angular/common/locales/zh';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {InteractiveService} from './interactive.service';
+import {ListComponent} from './list/list.component';
 
 registerLocaleData(zh);
 
@@ -24,7 +25,8 @@ registerLocaleData(zh);
     SearchComponent,
     EditComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
@@ -36,6 +38,7 @@ registerLocaleData(zh);
       {path: '', redirectTo: 'search', pathMatch: 'full'},
       {path: 'search', component: SearchComponent},
       {path: 'login', component: LoginComponent},
+      {path: 'list', component: ListComponent},
       {path: 'register', component: RegisterComponent},
       {path: 'edit/:id', component: EditComponent}
     ]),
